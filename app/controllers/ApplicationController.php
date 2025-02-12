@@ -1,10 +1,14 @@
 <?php
-
-/**
- * Base controller for the application.
- * Add general things in this controller.
- */
-class ApplicationController extends Controller 
-{
+declare(strict_types=1);
+class ApplicationController extends Controller {
 	
+    private ModelTask $modelTask;
+
+    public function __construct(){
+        $this->modelTask = new ModelTask();
+    }
+    public function indexAction():void{
+        $allTasks = $this->modelTask->getAllTasks();
+        $this->view->allTasks = $allTasks;
+    }
 }
