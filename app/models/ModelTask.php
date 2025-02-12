@@ -36,5 +36,12 @@ class ModelTask {
         $nextId++;
         return $nextId;
     }
+    public function createTask(array $newTask):void{
+        $allTasks = $this->getAllTasks();
+        $newTask['id'] = $this->getNewId();
+        $allTasks[]=$newTask;
+        $jsonTasks = json_encode(array_values($allTasks), JSON_PRETTY_PRINT);
+        file_put_contents(self::DB_PATH, $jsonTasks);
+    }
 }
 ?>
