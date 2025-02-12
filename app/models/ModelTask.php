@@ -11,6 +11,10 @@ class ModelTask {
     public function getAllTasks():array{
         $alltasks = [];
         $dbJson = file_get_contents(self::DB_PATH);
+
+        if($dbJson === false){
+            throw new Exception("Base de datos no encontrada");
+        }
         $tasks = json_decode($dbJson, true);
         if(!$tasks){
             $tasks = [];
