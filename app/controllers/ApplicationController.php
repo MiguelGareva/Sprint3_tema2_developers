@@ -11,4 +11,7 @@ class ApplicationController extends Controller {
         $allTasks = $this->modelTask->getAllTasks();
         $this->view->allTasks = $allTasks;
     }
+    public function createAction():void{
+        
+    }
 }

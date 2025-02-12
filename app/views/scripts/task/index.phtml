@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <?php if (isset($this->allTasks) && !empty($this->allTasks)): ?>
+        <ul>
+            <?php foreach ($this->allTasks as $task): ?>
+                <li>
+                    <strong><?php echo htmlspecialchars($task['description']); ?></strong><br>
+                    Estado: <?php echo htmlspecialchars($task['status']); ?><br>
+                    Fecha de Inicio: <?php echo htmlspecialchars($task['date_ini']); ?><br>
+                    Fecha de Fin: <?php echo htmlspecialchars($task['date_end']); ?><br>
+                    Usuario: <?php echo htmlspecialchars($task['user']); ?><br>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>No hay tareas disponibles.</p>
+    <?php endif; ?>
+</body>
+</html>
