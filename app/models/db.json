@@ -16,11 +16,11 @@
         "id": 2
     },
     {
+        "id": "3",
         "description": "testing update feature",
-        "status": "completa",
-        "date_ini": "2025-02-13",
-        "date_end": "2025-02-13",
-        "user": "ronin",
-        "id": 3
+        "status": "initialized",
+        "date_ini": "2025-02-13T00:00",
+        "date_end": "2025-02-13T00:00",
+        "user": "roninino"
     }
 ]

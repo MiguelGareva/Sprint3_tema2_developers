@@ -52,7 +52,7 @@ class ModelTask {
 
         foreach($allTasks as $i => $task) {
             if((int)$task['id'] === (int)$updateTask['id']) {
-                $allTask[$i] = $updateTask;
+                $allTasks[$i] = $updateTask;
             }
         }
         $jsonTasks = json_encode(array_values($allTasks), JSON_PRETTY_PRINT);

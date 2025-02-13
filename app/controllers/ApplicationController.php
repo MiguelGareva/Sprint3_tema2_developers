@@ -49,7 +49,7 @@ class ApplicationController extends Controller {
                 'user' => $_POST['user']
             ];
             $this->modelTask->updateTask($updateTask);
-            header('Location: ./'); // Redirigir a la página principal
+            header('Location: ./');
             exit();
         }
     }
