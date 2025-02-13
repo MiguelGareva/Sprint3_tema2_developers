@@ -53,4 +53,7 @@ class ApplicationController extends Controller {
             exit();
         }
     }
+    public function deleteAction(): void{
+        
+    }
 }
