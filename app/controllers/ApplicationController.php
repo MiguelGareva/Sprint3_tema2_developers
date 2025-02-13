@@ -28,4 +28,10 @@ class ApplicationController extends Controller {
             exit();
         } 
     }
+    public function readAction(): void{
+        $taskId = $_GET['id'] ?? null;
+        $task = $this->modelTask->getTaskById((int)$taskId);
+        $this->view->task = $task;
+        
+    }
 }

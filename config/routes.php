@@ -13,5 +13,5 @@ $routes = array(
 	'/' => 'application#index',
 	'/index' => 'application#index',
 	'/create' => 'application#create',
-	
+	'/read' => 'application#read',
 );

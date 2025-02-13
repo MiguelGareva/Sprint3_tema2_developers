@@ -43,5 +43,9 @@ class ModelTask {
         $jsonTasks = json_encode(array_values($allTasks), JSON_PRETTY_PRINT);
         file_put_contents(self::DB_PATH, $jsonTasks);
     }
+    public function getTaskById(int $id): ?array{
+        $allTasks = $this->getAllTasks();
+        return $allTasks[$id] ?? null;
+    }
 }
 ?>

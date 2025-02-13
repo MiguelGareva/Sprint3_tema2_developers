@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leer Tarea</title>
+</head>
+<?php
+$allTask = $this->task;
+//print_r($oneTask);
+?>
+<body>
+    <div>
+        <h1>Tarea Detallada</h1>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <td><?php echo $allTask['id']; ?></td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td><?php echo $allTask['description']; ?></td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td><?php echo $allTask['status']; ?></td>
+                </tr>
+                <tr>
+                    <th>Hora de Inicio</th>
+                    <td><?php echo htmlspecialchars($allTask['date_ini']); ?></td>
+                </tr>
+                <tr>
+                    <th>Hora de Finalización</th>
+                    <td><?php echo htmlspecialchars($allTask['date_end']); ?></td>
+                </tr>
+                <tr>
+                    <th>Usuario</th>
+                    <td><?php echo $allTask['user']; ?></td>
+                </tr>
+            </table>
+        </div>
+        <a href="./">Volver</a>
+    </div>
+</body>
+</html>
