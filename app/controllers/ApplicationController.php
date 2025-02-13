@@ -54,6 +54,11 @@ class ApplicationController extends Controller {
         }
     }
     public function deleteAction(): void{
-        
+        $id = (int)$_GET['id'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
+            $this->modelTask-> deleteTask($id);
+            header ("Location:./");
+        }
+
     }
 }
