@@ -34,4 +34,23 @@ class ApplicationController extends Controller {
         $this->view->task = $task;
         
     }
+    public function updateAction():void{
+        $id = $_GET['id'];
+        $task = $this->modelTask->getTaskById((int)$id);
+        $this->view->task = $task;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $updateTask = [
+                'id' => $id,
+                'description' => $_POST['description'],
+                'status' => $_POST['status'],
+                'date_ini' => $_POST['date_ini'],
+                'date_end' => $_POST['date_end'],
+                'user' => $_POST['user']
+            ];
+            $this->modelTask->updateTask($updateTask);
+            header('Location: ./'); // Redirigir a la página principal
+            exit();
+        }
+    }
 }
