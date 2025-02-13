@@ -1,10 +1,26 @@
 [
     {
-        "description": "esto es una prueba",
+        "id": "1",
+        "description": "!esto es una prueba",
+        "status": "initialized",
+        "date_ini": "2025-02-12T00:00",
+        "date_end": "2025-02-13T00:00",
+        "user": "miguel"
+    },
+    {
+        "description": "probando desde fetures\/read",
         "status": "completa",
-        "date_ini": "2025-02-12",
+        "date_ini": "2025-02-13",
         "date_end": "2025-02-13",
-        "user": "miguel",
-        "id": 1
+        "user": "maik",
+        "id": 2
+    },
+    {
+        "id": "3",
+        "description": "testing update feature",
+        "status": "initialized",
+        "date_ini": "2025-02-13T00:00",
+        "date_end": "2025-02-13T00:00",
+        "user": "roninino"
     }
 ]

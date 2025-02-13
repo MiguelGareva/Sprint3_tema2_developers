@@ -47,5 +47,16 @@ class ModelTask {
         $allTasks = $this->getAllTasks();
         return $allTasks[$id] ?? null;
     }
+    public function updateTask(array $updateTask): void{
+        $allTasks = $this->getAllTasks();
+
+        foreach($allTasks as $i => $task) {
+            if((int)$task['id'] === (int)$updateTask['id']) {
+                $allTasks[$i] = $updateTask;
+            }
+        }
+        $jsonTasks = json_encode(array_values($allTasks), JSON_PRETTY_PRINT);
+        file_put_contents(self::DB_PATH, $jsonTasks);
+    }
 }
 ?>
