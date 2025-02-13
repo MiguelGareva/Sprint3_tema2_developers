@@ -2,9 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista de Tareas</title>
 </head>
+
 <body>
+    <a href="create">
+        <button>Añadir tarea</button>
+    </a>
     <h1>Lista de Tareas</h1>
     <?php if (isset($this->allTasks) && !empty($this->allTasks)): ?>
         <ul>

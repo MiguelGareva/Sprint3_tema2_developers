@@ -1,0 +1,10 @@
+[
+    {
+        "description": "esto es una prueba",
+        "status": "completa",
+        "date_ini": "2025-02-12",
+        "date_end": "2025-02-13",
+        "user": "miguel",
+        "id": 1
+    }
+]
