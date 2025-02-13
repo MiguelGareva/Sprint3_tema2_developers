@@ -2,7 +2,7 @@
 
 class TestController extends ApplicationController
 {
-	public function indexAction()
+	public function testIndexAction()
 	{
 		$this->view->message = "hello from test::index";
 	}
