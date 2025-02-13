@@ -1,30 +1,58 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lista de Tareas</title>
-</head>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Task List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <?php
+    $allTask = $this->task;
+    //print_r($listTasks);
+    ?>
+    <body action="/controllers/ApplicationController.php">
+        <h2>Task Manager</h2>
 
-<body>
-    <a href="create">
-        <button>Añadir tarea</button>
-    </a>
-    <h1>Lista de Tareas</h1>
-    <?php if (isset($this->allTasks) && !empty($this->allTasks)): ?>
-        <ul>
-            <?php foreach ($this->allTasks as $task): ?>
-                <li>
-                    <strong><?php echo htmlspecialchars($task['description']); ?></strong><br>
-                    Estado: <?php echo htmlspecialchars($task['status']); ?><br>
-                    Fecha de Inicio: <?php echo htmlspecialchars($task['date_ini']); ?><br>
-                    Fecha de Fin: <?php echo htmlspecialchars($task['date_end']); ?><br>
-                    Usuario: <?php echo htmlspecialchars($task['user']); ?><br>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>No hay tareas disponibles.</p>
-    <?php endif; ?>
-</body>
+        <div>
+            <a href="create">Create new task</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Creation Date</th>
+                    <th>End Date</th>
+                    <th>Author</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($this->allTasks !== null): ?>
+                    <?php foreach ($this->allTasks as $task): ?>
+                        <tr>
+                            <td><?php echo $task['id']; ?></td>
+                            <td><?php echo $task['description']; ?></td>
+                            <td><?php echo $task['status']; ?></td>
+                            <td><?php echo htmlspecialchars($task['date_ini']); ?></td>
+                            <td><?php echo $task['date_end']; ?></td>
+                            <td><?php echo htmlspecialchars($task['user']); ?></td>
+                            <td>
+                                <a href="read?id=<?php echo $task['id']; ?>" name="read">Leer</a>
+                                <a href="update?id=<?php echo $task['id']; ?>" name="update">Actualizar</a>
+                                <a href="delete?id=<?php echo $task['id']; ?>">Borrar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="7">
+                            <p>No tasks available</p>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </body>
 </html>
