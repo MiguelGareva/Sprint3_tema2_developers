@@ -1,46 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leer Tarea</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Task</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <?php
-$allTask = $this->task;
-//print_r($oneTask);
+  $task = $this->task;
 ?>
-<body>
-    <div>
-        <h1>Tarea Detallada</h1>
-        <div>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <td><?php echo $allTask['id']; ?></td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td><?php echo $allTask['description']; ?></td>
-                </tr>
-                <tr>
-                    <th>Estado</th>
-                    <td><?php echo $allTask['status']; ?></td>
-                </tr>
-                <tr>
-                    <th>Hora de Inicio</th>
-                    <td><?php echo htmlspecialchars($allTask['date_ini']); ?></td>
-                </tr>
-                <tr>
-                    <th>Hora de Finalización</th>
-                    <td><?php echo htmlspecialchars($allTask['date_end']); ?></td>
-                </tr>
-                <tr>
-                    <th>Usuario</th>
-                    <td><?php echo $allTask['user']; ?></td>
-                </tr>
-            </table>
-        </div>
-        <a href="./">Volver</a>
+<body class="bg-gradient-to-br from-blue-400 to-green-400 min-h-screen flex justify-center items-center">
+  <div class="w-full max-w-2xl px-6 py-8"> 
+    <!-- Título y botón Home -->
+    <div class="flex justify-between items-center w-full mb-6">
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-700 to-green-500 bg-clip-text text-transparent pb-1 border-b-4"
+          style="border-image: linear-gradient(to right, #1E40AF, #059669) 1;">
+        View Task
+      </h1>
+      <a href="index" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
+        Home
+      </a>
     </div>
+
+    <!-- Descripción de la vista -->
+    <div class="bg-gray-200 p-4 rounded-lg shadow-md mb-6">
+      <p class="text-center text-gray-700 font-medium">In this section, you can view the detailed information of a task, including its description, status, start date, end date, and assigned user. This helps you keep track of the tasks and their current progress.</p>
+    </div>
+
+    <!-- Contenedor estilizado -->
+    <div class="bg-gradient-to-br from-gray-100 to-gray-200 shadow-xl rounded-lg p-6 border border-gray-300">
+      <?php if(isset($task)): ?>
+        <table class="w-full text-left">
+          <tr class="border-b border-gray-400">
+            <th class="py-3 font-semibold text-gray-900">ID</th>
+            <td class="py-3 text-gray-700"><?php echo $task['id']; ?></td>
+          </tr>
+          <tr class="border-b border-gray-400">
+            <th class="py-3 font-semibold text-gray-900">Description</th>
+            <td class="py-3 text-gray-700"><?php echo htmlspecialchars($task['description']); ?></td>
+          </tr>
+          <tr class="border-b border-gray-400">
+            <th class="py-3 font-semibold text-gray-900">Status</th>
+            <td class="py-3 text-gray-700"><?php echo htmlspecialchars($task['status']); ?></td>
+          </tr>
+          <tr class="border-b border-gray-400">
+            <th class="py-3 font-semibold text-gray-900">Start Date</th>
+            <td class="py-3 text-gray-700"><?php echo htmlspecialchars($task['date_ini']); ?></td>
+          </tr>
+          <tr class="border-b border-gray-400">
+            <th class="py-3 font-semibold text-gray-900">End Date</th>
+            <td class="py-3 text-gray-700"><?php echo htmlspecialchars($task['date_end']); ?></td>
+          </tr>
+          <tr>
+            <th class="py-3 font-semibold text-gray-900">User</th>
+            <td class="py-3 text-gray-700"><?php echo htmlspecialchars($task['user']); ?></td>
+          </tr>
+        </table>
+      <?php else: ?>
+        <p class="text-center text-gray-800 text-lg font-semibold">No task found.</p>
+      <?php endif; ?>
+    </div>
+  </div>
 </body>
 </html>

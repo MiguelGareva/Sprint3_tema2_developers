@@ -58,5 +58,11 @@ class ModelTask {
         $jsonTasks = json_encode(array_values($allTasks), JSON_PRETTY_PRINT);
         file_put_contents(self::DB_PATH, $jsonTasks);
     }
+    public function deleteTask(int $id): void{
+        $deleteTask = $this->getAllTasks();
+        unset($deleteTask[$id]);
+        $jsonTasks = json_encode(array_values($deleteTask), JSON_PRETTY_PRINT);
+        file_put_contents(self::DB_PATH, $jsonTasks);
+    }
 }
 ?>
