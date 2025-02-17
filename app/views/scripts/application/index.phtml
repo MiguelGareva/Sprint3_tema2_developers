@@ -1,58 +1,83 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Task List</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <?php
-    $allTask = $this->task;
-    //print_r($listTasks);
-    ?>
-    <body action="/controllers/ApplicationController.php">
-        <h2>Task Manager</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-blue-300 to-green-300">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Título con gradiente y subrayado -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="relative overflow-visible">
+        <h1 class="inline-block text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent leading-tight pb-1 border-b-4"
+            style="border-image: linear-gradient(to right, #2563EB, #10B981) 1;">
+          Task Manager
+        </h1>
+      </div>
+      <a href="create" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded shadow-md">
+        Create New Task
+      </a>
+    </div>
 
-        <div>
-            <a href="create">Create new task</a>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Creation Date</th>
-                    <th>End Date</th>
-                    <th>Author</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($this->allTasks !== null): ?>
-                    <?php foreach ($this->allTasks as $task): ?>
-                        <tr>
-                            <td><?php echo $task['id']; ?></td>
-                            <td><?php echo $task['description']; ?></td>
-                            <td><?php echo $task['status']; ?></td>
-                            <td><?php echo htmlspecialchars($task['date_ini']); ?></td>
-                            <td><?php echo $task['date_end']; ?></td>
-                            <td><?php echo htmlspecialchars($task['user']); ?></td>
-                            <td>
-                                <a href="read?id=<?php echo $task['id']; ?>" name="read">Leer</a>
-                                <a href="update?id=<?php echo $task['id']; ?>" name="update">Actualizar</a>
-                                <a href="delete?id=<?php echo $task['id']; ?>">Borrar</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="7">
-                            <p>No tasks available</p>
-                        </td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </body>
+    <!-- Tabla con fondo más saturado -->
+    <div class="bg-gray-300 shadow-md rounded-lg overflow-hidden">
+      <table class="min-w-full leading-normal">
+        <thead>
+          <tr>
+            <th class="px-5 py-3 border-b-2 border-gray-400 bg-gradient-to-r from-blue-500 to-blue-600 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              ID
+            </th>
+            <th class="px-5 py-3 border-b-2 border-gray-400 bg-gradient-to-r from-blue-500 to-blue-600 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Description
+            </th>
+            <th class="px-5 py-3 border-b-2 border-gray-400 bg-gradient-to-r from-blue-500 to-blue-600 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Author
+            </th>
+            <th class="px-5 py-3 border-b-2 border-gray-400 bg-gradient-to-r from-blue-500 to-blue-600 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if ($this->allTasks !== null): ?>
+            <?php foreach ($this->allTasks as $task): ?>
+              <tr class="hover:bg-gray-100">
+                <td class="px-5 py-5 border-b border-gray-400 text-sm">
+                  <p class="text-gray-900 whitespace-no-wrap"><?php echo $task['id']; ?></p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-400 text-sm">
+                  <p class="text-gray-900 whitespace-no-wrap"><?php echo $task['description']; ?></p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-400 text-sm">
+                  <p class="text-gray-900 whitespace-no-wrap"><?php echo htmlspecialchars($task['user']); ?></p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-400 text-sm">
+                  <div class="flex space-x-2">
+                    <a href="read?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-1 px-3 rounded shadow-md">
+                      View
+                    </a>
+                    <a href="update?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-1 px-3 rounded shadow-md">
+                      Edit
+                    </a>
+                    <a href="delete?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-1 px-3 rounded shadow-md">
+                      Delete
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <tr>
+              <td colspan="4" class="px-5 py-5 border-b border-gray-400 text-sm">
+                <p class="text-gray-900 whitespace-no-wrap text-center">No tasks available</p>
+              </td>
+            </tr>
+          <?php endif; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
 </html>
