@@ -24,11 +24,11 @@
         "id": 5
     },
     {
-        "id": "6",
-        "description": "",
+        "description": "testing models refactoring",
         "status": "pending",
-        "date_ini": "2025-02-17T14:32",
-        "date_end": "2025-02-16T14:35",
-        "user": "miguel"
+        "date_ini": "2025-02-17T14:51",
+        "date_end": "2025-02-18T14:51",
+        "user": "miguel",
+        "id": 6
     }
 ]
