@@ -33,12 +33,32 @@ class ApplicationController extends Controller
         $this->view->allTasks = $allTasks;
     }
 
-    public function createAction(): void
-    {
+    public function createAction(): void {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newTask = $this->handleTaskData();
+            $newTask = [
+                'description' => $_POST['description'] ?? '',
+                'status' => $_POST['status'] ?? '',
+                'date_ini' => $_POST['date_ini'] ?? '',
+                'date_end' => $_POST['date_end'] ?? '',
+                'user' => $_POST['user'] ?? ''
+            ];
+    
+            // Validación de campos obligatorios
+            if (empty($newTask['description']) || empty($newTask['user'])) {
+                $this->view->error = "The user and description are required.";
+                return;
+            }
+    
+            // Validación de fechas
+            if (!empty($newTask['date_ini']) && !empty($newTask['date_end']) && $newTask['date_end'] < $newTask['date_ini']) {
+                $this->view->error = "The end date cannot be earlier than the start date.";
+                return;
+            }
+    
+            // Si pasa todas las validaciones, se guarda la tarea
             $this->modelTask->createTask($newTask);
-            $this->redirectToHome();
+            header('Location: ./');
+            exit();
         }
     }
 
