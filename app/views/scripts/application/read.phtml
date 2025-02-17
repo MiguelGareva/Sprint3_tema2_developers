@@ -9,21 +9,26 @@
 <?php
   $task = $this->task;
 ?>
-<body class="bg-gradient-to-br from-blue-400 to-green-400 min-h-screen flex flex-col justify-center items-center">
-  <div class="w-full max-w-2xl px-6 py-6"> 
+<body class="bg-gradient-to-br from-blue-400 to-green-400 min-h-screen flex justify-center items-center">
+  <div class="w-full max-w-2xl px-6 py-8"> 
     <!-- Título y botón Home -->
-    <div class="flex justify-between items-center w-full mb-4">
+    <div class="flex justify-between items-center w-full mb-6">
       <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-700 to-green-500 bg-clip-text text-transparent pb-1 border-b-4"
           style="border-image: linear-gradient(to right, #1E40AF, #059669) 1;">
         View Task
       </h1>
-      <a href="index" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded shadow-md">
+      <a href="index" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
         Home
       </a>
     </div>
 
+    <!-- Descripción de la vista -->
+    <div class="bg-gray-200 p-4 rounded-lg shadow-md mb-6">
+      <p class="text-center text-gray-700 font-medium">In this section, you can view the detailed information of a task, including its description, status, start date, end date, and assigned user. This helps you keep track of the tasks and their current progress.</p>
+    </div>
+
     <!-- Contenedor estilizado -->
-    <div class="bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg rounded-2xl p-6 border border-gray-300">
+    <div class="bg-gradient-to-br from-gray-100 to-gray-200 shadow-xl rounded-lg p-6 border border-gray-300">
       <?php if(isset($task)): ?>
         <table class="w-full text-left">
           <tr class="border-b border-gray-400">

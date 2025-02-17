@@ -1,5 +1,3 @@
-<!-- Archivo: app/views/task/create.phtml -->
-<!-- Rama: feature/task-views -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +10,7 @@
 <body class="bg-gradient-to-br from-blue-300 to-green-300">
   <div class="container mx-auto px-4 py-8">
     <!-- Encabezado con título y botón para volver a la página principal -->
-    <div class="flex justify-between items-center mb-6">
+    <div class="max-w-2xl mx-auto flex justify-between items-center mb-6">
       <div class="relative overflow-visible">
         <h1 class="inline-block text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent leading-tight pb-1 border-b-4"
             style="border-image: linear-gradient(to right, #2563EB, #10B981) 1;">
@@ -25,8 +23,13 @@
       </a>
     </div>
 
+    <!-- Descripción de la vista centrada -->
+    <div class="bg-gray-200 p-4 rounded-lg shadow-md mb-6 max-w-2xl mx-auto text-center">
+      <p class="text-gray-700 font-medium">In this section, you can create a new task by providing its description, status, dates, and the user responsible. Make sure to fill in all fields to ensure the task is properly registered.</p>
+    </div>
+
     <!-- Contenedor del formulario -->
-    <div class="bg-gray-300 shadow-md rounded-lg p-6">
+    <div class="bg-gray-300 shadow-md rounded-lg p-6 max-w-2xl mx-auto">
       <form action="create" method="POST" class="space-y-4">
         <!-- Campo de descripción -->
         <div>

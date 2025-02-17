@@ -6,23 +6,35 @@
   <title>Task Manager</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-br from-blue-300 to-green-300">
-  <div class="container mx-auto px-4 py-8">
+<body class="bg-gradient-to-br from-blue-300 to-green-300 min-h-screen flex flex-col justify-center items-center">
+
+  <div class="w-full max-w-4xl px-6 py-8"> 
     <!-- Título con gradiente y subrayado -->
     <div class="flex justify-between items-center mb-6">
       <div class="relative overflow-visible">
         <h1 class="inline-block text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent leading-tight pb-1 border-b-4"
-            style="border-image: linear-gradient(to right, #2563EB, #10B981) 1;">
+            style="border-image: linear-gradient(to right, #2563EB, #10B981) 1; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
           Task Manager
         </h1>
       </div>
-      <a href="create" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded shadow-md">
+    </div>
+
+    <!-- Descripción debajo del título con fondo similar al de la tabla -->
+    <div class="bg-gray-200 p-4 mb-6 rounded-lg shadow-lg text-center text-gray-800 text-lg">
+      <p class="leading-relaxed">
+        Manage your daily tasks with ease! Create, edit, and delete tasks to stay organized and on top of your responsibilities. Track the status of each task to stay focused and productive.
+      </p>
+    </div>
+
+    <!-- Botón de crear nueva tarea -->
+    <div class="mb-6 text-center">
+      <a href="create" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded shadow-lg hover:shadow-xl transition duration-300">
         Create New Task
       </a>
     </div>
 
     <!-- Tabla con fondo más saturado -->
-    <div class="bg-gray-300 shadow-md rounded-lg overflow-hidden">
+    <div class="bg-gray-200 shadow-lg rounded-lg overflow-hidden">
       <table class="min-w-full leading-normal">
         <thead>
           <tr>
@@ -43,7 +55,7 @@
         <tbody>
           <?php if ($this->allTasks !== null): ?>
             <?php foreach ($this->allTasks as $task): ?>
-              <tr class="hover:bg-gray-100">
+              <tr class="hover:bg-gray-100 transition duration-200">
                 <td class="px-5 py-5 border-b border-gray-400 text-sm">
                   <p class="text-gray-900 whitespace-no-wrap"><?php echo $task['id']; ?></p>
                 </td>
@@ -54,14 +66,14 @@
                   <p class="text-gray-900 whitespace-no-wrap"><?php echo htmlspecialchars($task['user']); ?></p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-400 text-sm">
-                  <div class="flex space-x-2">
-                    <a href="read?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-1 px-3 rounded shadow-md">
+                  <div class="flex space-x-4">
+                    <a href="read?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
                       View
                     </a>
-                    <a href="update?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-1 px-3 rounded shadow-md">
+                    <a href="update?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
                       Edit
                     </a>
-                    <a href="delete?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-1 px-3 rounded shadow-md">
+                    <a href="delete?id=<?php echo $task['id']; ?>" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
                       Delete
                     </a>
                   </div>
@@ -79,5 +91,6 @@
       </table>
     </div>
   </div>
+
 </body>
 </html>
