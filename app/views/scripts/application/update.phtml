@@ -1,51 +1,86 @@
+<!-- Archivo: app/views/task/update.phtml -->
+<!-- Rama: feature/task-views -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Tarea</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Task</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Actualizar Tarea</h1>
-    <?php
-   
-    $task = $this->task; ?>
+<body class="bg-gradient-to-br from-blue-300 to-green-300">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Encabezado: Título y botón Home -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="relative overflow-visible">
+        <h1 class="inline-block text-4xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent leading-tight pb-1 border-b-4"
+            style="border-image: linear-gradient(to right, #2563EB, #10B981) 1;">
+          Update Task
+        </h1>
+      </div>
+      <a href="index" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded shadow-md">
+        Home
+      </a>
+    </div>
 
-    <form method="post">
-        <input type="hidden" name="id" value="<?php echo $task['id']; ?>"> 
+    <!-- Contenedor del formulario -->
+    <div class="bg-gray-300 shadow-md rounded-lg p-6">
+      <!-- La acción del formulario incluye el id de la tarea -->
+      <form action="update?id=<?php echo $this->task['id']; ?>" method="POST" class="space-y-4">
+        <!-- Campo oculto para el id -->
+        <input type="hidden" name="id" value="<?php echo $this->task['id']; ?>">
 
+        <!-- Campo de descripción -->
         <div>
-            <label for="description">Descripción:</label>
-            <input type="text" id="description" name="description" value="<?php echo $task['description']; ?>" required>
+          <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
+          <input type="text" id="description" name="description" placeholder="Enter task description" 
+                 value="<?php echo htmlspecialchars($this->task['description']); ?>"
+                 class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        
-        <div>
-            <label for="status">Estado:</label>
-            <select id="status" name="status" required>
-                <option value="initialized" <?php if ($task['status'] == 'initialized') echo 'selected'; ?>>Inicializado</option>
-                <option value="in process" <?php if ($task['status'] == 'in process') echo 'selected'; ?>>En proceso</option>
-                <option value="finalized" <?php if ($task['status'] == 'finalized') echo 'selected'; ?>>Finalizado</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="user">Usuario:</label>
-            <input type="text" id="user" name="user" value="<?php echo $task['user']; ?>" required>
-        </div>
-        
-        <div>
-            <label for="date_ini">Fecha de Inicio:</label>
-            <input type="datetime-local" id="date_ini" name="date_ini" value="<?php echo date('Y-m-d\TH:i', strtotime($task['date_ini'])); ?>" required>
-        </div>
-        
-        <div>
-            <label for="date_end">Fecha de Fin:</label>
-            <input type="datetime-local" id="date_end" name="date_end" value="<?php echo date('Y-m-d\TH:i', strtotime($task['date_end'])); ?>" required>
-        </div>
-        
-        <button type="submit">Guardar Tarea</button>
-    </form>
 
-    <a href="./">Volver a la Lista</a>
+        <!-- Campo de estado (desplegable) -->
+        <div>
+          <label for="status" class="block text-gray-700 font-bold mb-2">Status</label>
+          <select id="status" name="status" 
+                  class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="pending" <?php echo ($this->task['status'] == 'pending') ? 'selected' : ''; ?>>Pending</option>
+            <option value="in progress" <?php echo ($this->task['status'] == 'in progress') ? 'selected' : ''; ?>>In Progress</option>
+            <option value="finished" <?php echo ($this->task['status'] == 'finished') ? 'selected' : ''; ?>>Finished</option>
+          </select>
+        </div>
+
+        <!-- Campo de fecha de inicio -->
+        <div>
+          <label for="date_ini" class="block text-gray-700 font-bold mb-2">Start Date</label>
+          <input type="datetime-local" id="date_ini" name="date_ini" 
+                 value="<?php echo htmlspecialchars($this->task['date_ini']); ?>"
+                 class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Campo de fecha de finalización -->
+        <div>
+          <label for="date_end" class="block text-gray-700 font-bold mb-2">End Date</label>
+          <input type="datetime-local" id="date_end" name="date_end" 
+                 value="<?php echo htmlspecialchars($this->task['date_end']); ?>"
+                 class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Campo de usuario -->
+        <div>
+          <label for="user" class="block text-gray-700 font-bold mb-2">User</label>
+          <input type="text" id="user" name="user" placeholder="Enter your name" 
+                 value="<?php echo htmlspecialchars($this->task['user']); ?>"
+                 class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Botón para enviar el formulario -->
+        <div class="text-right">
+          <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-2 px-4 rounded shadow-md">
+            Update Task
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
