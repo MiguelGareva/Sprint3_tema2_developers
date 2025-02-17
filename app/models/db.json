@@ -22,5 +22,13 @@
         "date_end": "2025-02-17T15:06",
         "user": "miguel",
         "id": 5
+    },
+    {
+        "id": "6",
+        "description": "",
+        "status": "pending",
+        "date_ini": "2025-02-17T14:32",
+        "date_end": "2025-02-16T14:35",
+        "user": "miguel"
     }
 ]
