@@ -30,5 +30,21 @@
         "date_end": "2025-02-18T14:51",
         "user": "miguel",
         "id": 6
+    },
+    {
+        "description": "esto es una prueba",
+        "status": "in progress",
+        "date_ini": "2025-02-18T10:55",
+        "date_end": "2025-02-19T10:55",
+        "user": "miguel",
+        "id": 7
+    },
+    {
+        "description": "testing models refactoring",
+        "status": "pending",
+        "date_ini": "2025-02-18T11:09",
+        "date_end": "2025-02-19T11:09",
+        "user": "miguel",
+        "id": 8
     }
 ]

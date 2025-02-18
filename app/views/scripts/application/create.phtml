@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create New Task</title>
-  <!-- Usamos Tailwind CSS vía CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-br from-blue-300 to-green-300">
@@ -17,7 +16,6 @@
           Create New Task
         </h1>
       </div>
-      <!-- Botón para volver a la página principal -->
       <a href="index" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-2 px-4 rounded shadow-md">
         Home
       </a>
@@ -25,14 +23,16 @@
 
     <!-- Descripción de la vista centrada -->
     <div class="bg-gray-200 p-4 rounded-lg shadow-md mb-6 max-w-2xl mx-auto text-center">
-      <p class="text-gray-700 font-medium">In this section, you can create a new task by providing its description, status, dates, and the user responsible. Make sure to fill in all fields to ensure the task is properly registered.</p>
+      <p class="text-gray-700 font-medium">
+        In this section, you can create a new task by providing its description, status, dates, and the user responsible. Make sure to fill in all fields to ensure the task is properly registered.
+      </p>
     </div>
 
-    <!-- Mensaje de error, si existe -->
-    <?php if (isset($this->error)): ?>
-      <div class="bg-red-500 text-white font-semibold p-4 rounded-lg shadow-md mb-4">
-        <p class="text-center"><?php echo $this->error; ?></p>
-      </div>
+    <!-- Mostrar mensaje de error si existe -->
+    <?php if (!empty($this->error)): ?>
+    <div class="bg-red-500 text-white font-semibold p-4 rounded-lg shadow-md mb-4">
+        <p class="text-center"><?php echo htmlspecialchars($this->error); ?></p>
+    </div>
     <?php endif; ?>
 
     <!-- Contenedor del formulario -->

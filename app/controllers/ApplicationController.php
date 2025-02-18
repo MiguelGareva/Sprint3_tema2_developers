@@ -34,16 +34,15 @@ class ApplicationController extends Controller
     }
 
     public function createAction(): void {
+        $this->view->error = null; // Asegurar que no haya errores previos
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
+            
                 $newTask = $this->handleTaskData();
-                $this->modelTask->createTask($newTask);
+                $this->modelTask->createTask($newTask); // Esto ya llama a validateTaskData()
                 $this->redirectToHome();
-            } catch (Exception $e) {
-                $this->view->error = $e->getMessage();
-            }
         }
-        $this->view->render('task/create.phtml');
+
     }
 
     public function readAction(): void
