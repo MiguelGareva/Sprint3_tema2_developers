@@ -66,10 +66,6 @@ class ModelTask {
             throw new Exception('La fecha de inicio es obligatoria.');
         }
 
-        if (empty($taskData['date_end'])) {
-            throw new Exception('La fecha de finalización es obligatoria.');
-        }
-
         if (strtotime($taskData['date_end']) < strtotime($taskData['date_ini'])) {
             throw new Exception('La fecha de finalización no puede ser anterior a la fecha de inicio.');
         }
