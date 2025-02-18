@@ -35,31 +35,15 @@ class ApplicationController extends Controller
 
     public function createAction(): void {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newTask = [
-                'description' => $_POST['description'] ?? '',
-                'status' => $_POST['status'] ?? '',
-                'date_ini' => $_POST['date_ini'] ?? '',
-                'date_end' => $_POST['date_end'] ?? '',
-                'user' => $_POST['user'] ?? ''
-            ];
-    
-            // Validación de campos obligatorios
-            if (empty($newTask['description']) || empty($newTask['user'])) {
-                $this->view->error = "The user and description are required.";
-                return;
+            try {
+                $newTask = $this->handleTaskData();
+                $this->modelTask->createTask($newTask);
+                $this->redirectToHome();
+            } catch (Exception $e) {
+                $this->view->error = $e->getMessage();
             }
-    
-            // Validación de fechas
-            if (!empty($newTask['date_ini']) && !empty($newTask['date_end']) && $newTask['date_end'] < $newTask['date_ini']) {
-                $this->view->error = "The end date cannot be earlier than the start date.";
-                return;
-            }
-    
-            // Si pasa todas las validaciones, se guarda la tarea
-            $this->modelTask->createTask($newTask);
-            header('Location: ./');
-            exit();
         }
+        $this->view->render('task/create.phtml');
     }
 
     public function readAction(): void
@@ -82,9 +66,13 @@ class ApplicationController extends Controller
             $this->view->task = $task;
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $updateTask = array_merge(['id' => $id], $this->handleTaskData());
-                $this->modelTask->updateTask($updateTask);
-                $this->redirectToHome();
+                try {
+                    $updateTask = array_merge(['id' => $id], $this->handleTaskData());
+                    $this->modelTask->updateTask($updateTask);
+                    $this->redirectToHome();
+                } catch (Exception $e) {
+                    $this->view->error = $e->getMessage();
+                }
             }
         } else {
             // Manejo de error si no se pasa un ID válido
