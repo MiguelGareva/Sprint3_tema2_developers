@@ -33,13 +33,16 @@ class ApplicationController extends Controller
         $this->view->allTasks = $allTasks;
     }
 
-    public function createAction(): void
-    {
+    public function createAction(): void {
+        $this->view->error = null; // Asegurar que no haya errores previos
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newTask = $this->handleTaskData();
-            $this->modelTask->createTask($newTask);
-            $this->redirectToHome();
+            
+                $newTask = $this->handleTaskData();
+                $this->modelTask->createTask($newTask); // Esto ya llama a validateTaskData()
+                $this->redirectToHome();
         }
+
     }
 
     public function readAction(): void
@@ -62,9 +65,13 @@ class ApplicationController extends Controller
             $this->view->task = $task;
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $updateTask = array_merge(['id' => $id], $this->handleTaskData());
-                $this->modelTask->updateTask($updateTask);
-                $this->redirectToHome();
+                try {
+                    $updateTask = array_merge(['id' => $id], $this->handleTaskData());
+                    $this->modelTask->updateTask($updateTask);
+                    $this->redirectToHome();
+                } catch (Exception $e) {
+                    $this->view->error = $e->getMessage();
+                }
             }
         } else {
             // Manejo de error si no se pasa un ID válido

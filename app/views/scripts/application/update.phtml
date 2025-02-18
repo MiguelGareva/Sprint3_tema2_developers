@@ -26,6 +26,13 @@
       <p class="text-gray-700 font-medium">In this section, you can update the details of an existing task, such as its description, status, dates, and the assigned user. Make sure the information is up-to-date to reflect the current progress of the task.</p>
     </div>
 
+    <!-- Mensaje de error, si existe -->
+    <?php if (isset($this->error)): ?>
+      <div class="bg-red-500 text-white font-semibold p-4 rounded-lg shadow-md mb-4">
+        <p class="text-center"><?php echo $this->error; ?></p>
+      </div>
+    <?php endif; ?>
+
     <!-- Contenedor del formulario -->
     <div class="bg-gray-300 shadow-md rounded-lg p-6 max-w-2xl mx-auto">
       <!-- La acción del formulario incluye el id de la tarea -->
