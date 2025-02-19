@@ -109,9 +109,12 @@ class ModelTask {
 
     // Eliminar una tarea
     public function deleteTask(int $id): void {
-        $this->tasks = array_filter($this->tasks, fn($task) => $task['id'] !== $id);
-
-        $this->saveTasksToFile($this->tasks);
+        $data = $this->getAllTasks();
+        unset($data[$id]);
+  
+        $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
+        file_put_contents(ROOT_PATH . '/app/models/db.json', $json);
+    
     }
 }
 ?>
